@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agora — The Treasury That Reads</title>
+<!-- Structure: VOTING FLOOR / LEDGER. Sticky treasury ticker → charter banner → vertical stacked proposal ledger (full-width rows with alignment bars). No bento, no vault card. -->
+<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <i class="ph-bold ph-bank" style="font-size:24px;color:var(--sage)"></i>
+        Agora
+      </div>
+      <div class="nav-links">
+        <a href="#floor">The Floor</a>
+        <a href="#how">How it works</a>
+        <a href="https://docs.genlayer.com/" target="_blank" rel="noopener">GenLayer</a>
+        <span id="walletslot"><button class="btn sm" id="connectBtn">Connect<span class="ic" data-icon="arrowRight"></span></button></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- treasury ticker -->
+  <div class="ticker">
+    <div class="tk"><span class="tk-l">Treasury</span><span class="tk-v disp" id="tkTreasury">— GEN</span></div>
+    <div class="tk"><span class="tk-l">Approved</span><span class="tk-v disp" id="tkApproved">—</span></div>
+    <div class="tk"><span class="tk-l">Pending</span><span class="tk-v disp" id="tkPending">—</span></div>
+    <div class="tk"><span class="tk-l">Rejected</span><span class="tk-v disp" id="tkRejected">—</span></div>
+    <div class="tk-cta"><button class="btn sage sm" id="proposeBtn">Submit a proposal <span class="ic" data-icon="pen"></span></button></div>
+  </div>
+
+  <header class="intro">
+    <div class="intro-text">
+      <span class="eyebrow"><span class="pip"></span> AI-moderated treasury</span>
+      <h1 class="disp">Funding decided by <em>judgment</em>, not by whales.</h1>
+      <p>Agora pools GEN under a written charter. Anyone proposes. Instead of a token vote, the contract reads each proposal against the charter and a validator set agrees on what deserves funding. Merit over balance.</p>
+    </div>
+    <div class="intro-stage">
+      <div id="treasury3d"></div>
+      <div class="stage-cap">A common treasury, governed by a shared mandate</div>
+    </div>
+  </header>
+
+  <section class="forum-band reveal">
+    <figure class="fb-img">
+      <img src="https://picsum.photos/seed/agora-assembly/880/580" alt="The assembly floor" loading="lazy" />
+    </figure>
+    <div class="fb-text">
+      <span class="eyebrow"><span class="pip"></span> The assembly</span>
+      <h3 class="disp">Every grant, weighed against one charter.</h3>
+      <p>No lobbying, no token-weighted votes. Each proposal is read against the same written mandate, and the validator set scores its alignment. The treasury follows merit, not the size of a wallet.</p>
+      <ul class="fb-list">
+        <li><i class="ph-bold ph-scroll"></i> One charter, applied to all</li>
+        <li><i class="ph-bold ph-scales"></i> Validators score alignment 0–100</li>
+        <li><i class="ph-bold ph-hand-coins"></i> Approved grants pay from treasury</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- charter banner -->
+  <section class="charter-banner reveal" id="charter">
+    <div class="cb-label">The Charter · the only rule the reviewer follows</div>
+    <div class="cb-text" id="charterText"><span class="muted">No charter set yet. The first steward writes the mandate that every proposal is judged against.</span></div>
+    <div id="charterAction" class="cb-action"></div>
+  </section>
+
+  <!-- the floor: vertical proposal ledger -->
+  <section id="floor" class="reveal">
+    <div class="floor-head">
+      <h2 class="disp">The Floor</h2>
+      <span class="meta mono" id="floorMeta">loading…</span>
+      <button class="btn ghost sm" id="refreshBtn">Refresh</button>
+    </div>
+    <div class="ledger" id="bento"><div class="empty">Opening the floor…</div></div>
+  </section>
+
+  <section id="how" class="reveal">
+    <div class="floor-head"><h2 class="disp">How a grant is decided</h2></div>
+    <div class="zigzag">
+      <div class="zstep zs-left"><div class="zs-icon"><i class="ph-duotone ph-pen-nib"></i></div><div class="zs-content"><h4 class="disp">Propose</h4><p>Submit a title, plan, and the GEN you request from the treasury. Make your case against the charter.</p></div></div>
+      <div class="zstep zs-right"><div class="zs-content"><h4 class="disp">Review</h4><p>The contract reads it against the charter; validators score alignment independently and must agree on the outcome.</p></div><div class="zs-icon"><i class="ph-duotone ph-scales"></i></div></div>
+      <div class="zstep zs-left"><div class="zs-icon"><i class="ph-duotone ph-hand-coins"></i></div><div class="zs-content"><h4 class="disp">Disburse</h4><p>If approved and the treasury can cover it, the grant pays out on-chain. No vote, no veto, just alignment.</p></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Agora · AI-moderated grants treasury on GenLayer studionet</span>
+    <span class="links"><a href="https://docs.genlayer.com/" target="_blank" rel="noopener">Docs</a><a href="https://docs.genlayer.com/developers/intelligent-contracts/equivalence-principle" target="_blank" rel="noopener">Equivalence Principle</a><a href="https://studio.genlayer.com/" target="_blank" rel="noopener">Studio</a></span>
+    <span id="contractFoot"></span>
+  </footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-h"><h3 class="disp" id="drawerTitle">Submit a proposal</h3><button class="btn ghost sm" id="closeDrawer">Close</button></div>
+  <div class="drawer-b" id="drawerBody"></div>
+</aside>
+
+<div id="log"></div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
