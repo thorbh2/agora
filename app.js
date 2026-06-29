@@ -223,7 +223,7 @@ $("closeDrawer").onclick = closeDrawer;
 $("scrim").onclick = closeDrawer;
 if (window.ethereum) window.ethereum.on?.("accountsChanged", refreshWallet);
 
-// ---- intro stage: real Three.js — a treasury of golden coins orbiting a GEN core
+// ---- intro stage: real Three.js - a treasury of golden coins orbiting a GEN core
 function treasury3d() {
   const host = $("treasury3d"); if (!host || !window.THREE) return;
   const scene = new THREE.Scene();
@@ -239,7 +239,7 @@ function treasury3d() {
   const coinGeo = new THREE.CylinderGeometry(1, 1, 0.18, 48);
   const goldMat = new THREE.MeshStandardMaterial({ color: GOLD, metalness: 0.85, roughness: 0.28 });
 
-  // central GEN core — a faceted token
+  // central GEN core - a faceted token
   const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1.05, 0),
     new THREE.MeshStandardMaterial({ color: INK, metalness: 0.5, roughness: 0.35, flatShading: true }));
   scene.add(core);
