@@ -1,4 +1,4 @@
-// genlayer-lite.js — a tiny shared client for the static project frontends.
+// genlayer-lite.js - a tiny shared client for the static project frontends.
 // Reads use genlayer-js (from esm.sh CDN). Writes go through the connected
 // wallet (MetaMask), with the gas fields forced to legacy gasPrice=0 so the
 // wallet's gas oracle cannot wrongly claim "insufficient funds for fees" on a
