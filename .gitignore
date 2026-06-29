@@ -17,3 +17,5 @@ private-keys.json
 *.pfx
 __pycache__/
 .pytest_cache/
+
+.env*
