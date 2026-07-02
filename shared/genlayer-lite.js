@@ -3,8 +3,8 @@
 // wallet (MetaMask), with the gas fields forced to legacy gasPrice=0 so the
 // wallet's gas oracle cannot wrongly claim "insufficient funds for fees" on a
 // zero-fee network like studionet.
-import { createClient, createAccount } from "https://esm.sh/genlayer-js@latest";
-import { studionet } from "https://esm.sh/genlayer-js@latest/chains";
+import { createClient, createAccount } from "https://esm.sh/genlayer-js@1.1.8";
+import { studionet } from "https://esm.sh/genlayer-js@1.1.8/chains";
 
 export const RPC = "https://studio.genlayer.com/api";
 export const STUDIONET_HEX = "0xf22f"; // 61999

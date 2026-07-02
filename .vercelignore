@@ -17,3 +17,7 @@ private-keys.json
 *.pfx
 __pycache__/
 .pytest_cache/
+.vercel
+node_modules
+.pytest_cache
+__pycache__
