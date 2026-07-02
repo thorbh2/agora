@@ -90,33 +90,24 @@ Agora ships as a standalone static app:
 - wallet connection through the bundled browser client
 - GenLayer reads through `genlayer-js`
 - writes routed through the connected EVM wallet
-- local `shared/` client files included so Vercel does not depend on the private workspace router
+- bundled `shared/` client files keep the Vercel deployment self-contained
 - deployed contract address pinned in `app.js` and `deployment.json`
 
 ## Run Locally
 
-From the private workspace:
+From this repository folder:
 
 ```powershell
-cd <private-workspace-root>
-npm run preview:start
-npm run preview:project -- 05-agora
+python -m http.server 8080
 ```
 
 Open:
 
 ```text
-http://localhost:8080/05-agora/
+http://localhost:8080/
 ```
 
-## Publish / Redeploy
-
-```powershell
-cd <private-workspace-root>
-npm run publish:project -- -Project 05-agora -Repo https://github.com/thorbh2/agora.git
-```
-
-Vercel production redeploy from a clean project folder:
+## Deploy
 
 ```powershell
 npx --yes vercel@latest --prod --yes
